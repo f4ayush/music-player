@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react';
 import Player from './components/Player/Player';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar';
+import Login from './components/Login/Login';
+
 
 function App() {
+  const [userId, setuserId] = useState(JSON.parse(localStorage.getItem('musicPlayerUser'))?.data?.result?._id);
   const [songs] = useState([
     {
       title: "Forget me too ft. Halsey",
@@ -47,12 +50,19 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <Player
-        currentSongIndex={currentSongIndex}
-        setCurrentSongIndex={setCurrentSongIndex}
-        nextSongIndex={nextSongIndex}
-        songs={songs}
-      />
+      <Switch>
+        <Route path="/" exact>
+          <Player
+            currentSongIndex={currentSongIndex}
+            setCurrentSongIndex={setCurrentSongIndex}
+            nextSongIndex={nextSongIndex}
+            songs={songs}
+          />
+        </Route>
+        <Route path="/login" exact>
+          <Login setuserId={setuserId} />
+        </Route>
+      </Switch>
     </Router>
   );
 }
