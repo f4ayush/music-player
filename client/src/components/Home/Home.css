@@ -1,0 +1,8 @@
+.home{
+    display: flex;
+}
+
+
+.songs-column, .c-player {
+    flex: 1;
+}

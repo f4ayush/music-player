@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import users from "./routes/users.js"
 import mongoose from 'mongoose';
 import cors from 'cors';
+import songs from './routes/songs.js';
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
 
 app.use('/', users);
+app.use('/addSong', songs);
 
 const CONNECTION_URL = 'mongodb+srv://ayush:ayush@cluster0.hapkh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;

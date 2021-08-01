@@ -21,7 +21,7 @@ function Navbar() {
         }
 
         setUser(JSON.parse(localStorage.getItem('musicPlayerUser')));
-    }, [location]);
+    }, [location, user?.token]);
 
     return (
         <div className="nav-container" style={{ display: 'flex', justifyContent: "space-around" }}>

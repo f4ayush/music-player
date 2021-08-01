@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { addFavorite } from '../../api';
 import Controls from './Controls';
 import Details from './Details';
 
@@ -40,9 +41,20 @@ function Player(props) {
         }
     }
 
+    const addToFav = async (userId, songId) => {
+        try {
+            // await addFavorite({ userId, songId })
+            props.setFavorites((fav) => {
+                return [...fav, props.currentSongIndex]
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <div className="c-player">
             <p>delete</p>
+            <p onClick={addToFav}>fav8</p>
             <audio src={props.songs[props.currentSongIndex].src} ref={audioEl}></audio>
             <h4>Playing now</h4>
             <Details song={props.songs[props.currentSongIndex]} />

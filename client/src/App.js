@@ -1,32 +1,37 @@
 import { useState, useEffect } from 'react';
-import Player from './components/Player/Player';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar';
 import Login from './components/Login/Login';
+import Home from './components/Home/Home';
+import Upload from './components/Upload/Upload';
 
 
 function App() {
   const [userId, setuserId] = useState(JSON.parse(localStorage.getItem('musicPlayerUser'))?.data?.result?._id);
   const [songs] = useState([
     {
+      id: "1",
       title: "Forget me too ft. Halsey",
       artist: "Machine Gun Kelly",
       img_src: "./images/song-1.jpg",
       src: "./music/on-n-on.mp3"
     },
     {
+      id: "2",
       title: "Song 2",
       artist: "Artist 2",
       img_src: "./images/song-2.jpg",
       src: "./music/somebody-new.mp3"
     },
     {
+      id: "3",
       title: "Song 3",
       artist: "Artist 3",
       img_src: "./images/song-3.jpg",
       src: "./music/on-n-on.mp3"
     },
     {
+      id: "4",
       title: "Song 4",
       artist: "Artist 4",
       img_src: "./images/song-4.jpg",
@@ -45,14 +50,15 @@ function App() {
         return currentSongIndex + 1;
       }
     });
-  }, [currentSongIndex]);
+  }, [currentSongIndex, songs.length]);
 
   return (
     <Router>
       <Navbar />
+      <Upload />
       <Switch>
         <Route path="/" exact>
-          <Player
+          <Home
             currentSongIndex={currentSongIndex}
             setCurrentSongIndex={setCurrentSongIndex}
             nextSongIndex={nextSongIndex}
