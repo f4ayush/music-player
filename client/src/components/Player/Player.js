@@ -45,7 +45,8 @@ function Player(props) {
         try {
             // await addFavorite({ userId, songId })
             props.setFavorites((fav) => {
-                return [...fav, props.currentSongIndex]
+
+                return [...fav, props.songs[props.currentSongIndex].id]
             })
         } catch (error) {
             console.log(error)

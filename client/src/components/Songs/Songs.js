@@ -2,6 +2,14 @@ import React, { useState } from 'react'
 
 function Songs({ songs, favorites, setCurrentSongId, setCurrentSongIndex }) {
     const [fav, setfav] = useState(false)
+    const [getIndex, setgetIndex] = useState("")
+    const getTitle = (id) => {
+        for (let i = 0; i < songs.length; i++) {
+            if (songs[i].id == id) {
+                return songs[i].title
+            }
+        }
+    }
     const playSong = (id) => {
         // setCurrentSongId(id)
         for (let i = 0; i < songs.length; i++) {
@@ -20,7 +28,7 @@ function Songs({ songs, favorites, setCurrentSongId, setCurrentSongIndex }) {
                 {
                     fav
                         ? favorites.map((song) => {
-                            return <p key={song} onClick={() => playSong(song)}>{songs[song].title}</p>
+                            return <p key={song} onClick={() => playSong(song)}>{getTitle(song)}</p>
                         })
                         : songs.map((song) => {
                             return <p key={song.id} onClick={() => playSong(song.id)}>{song.title}</p>
