@@ -10,6 +10,7 @@ export default function Home({ currentSongIndex, setCurrentSongIndex, nextSongIn
         <div className="home">
             <Songs songs={songs} favorites={favorites} setCurrentSongIndex={setCurrentSongIndex} setcurrentSongId={setcurrentSongId} />
             <Player
+                favorites={favorites}
                 setFavorites={setFavorites}
                 currentSongId={currentSongId}
                 currentSongIndex={currentSongIndex}

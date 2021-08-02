@@ -52,9 +52,18 @@ function Player(props) {
             console.log(error)
         }
     }
+    const deleteFav = async (userId, songId) => {
+        try {
+            // await addFavorite({ userId, songId })
+            const fav = props.favorites.filter(fav => fav !== props.songs[props.currentSongIndex].id)
+            props.setFavorites(fav)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return (
         <div className="c-player">
-            <p>delete</p>
+            <p onClick={deleteFav}>delete</p>
             <p onClick={addToFav}>fav8</p>
             <audio src={props.songs[props.currentSongIndex].src} ref={audioEl}></audio>
             <h4>Playing now</h4>
