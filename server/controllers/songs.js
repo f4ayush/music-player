@@ -18,3 +18,26 @@ export const addSong = async (req, res) => {
     }
 };
 
+export const getSong = async (req, res) => {
+
+    try {
+        const song = await SongModal.find()
+        res.status(201).json({ song });
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong" });
+
+        console.log(error);
+    }
+};
+
+export const getSongDetails = async (req, res) => {
+
+    try {
+        const song = await SongModal.find()
+        res.status(201).json({ song });
+    } catch (error) {
+        res.status(500).json({ message: "Something went wrong" });
+
+        console.log(error);
+    }
+};

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
-function Songs({ songs, favorites, setCurrentSongId, setCurrentSongIndex }) {
+function Songs({ songs, favorites, setCurrentSongId, setCurrentSongIndex, user }) {
     const [fav, setfav] = useState(false)
-    const [getIndex, setgetIndex] = useState("")
+    // const [getIndex, setgetIndex] = useState("")
     const getTitle = (id) => {
         for (let i = 0; i < songs.length; i++) {
             if (songs[i].id == id) {
@@ -22,7 +22,7 @@ function Songs({ songs, favorites, setCurrentSongId, setCurrentSongIndex }) {
         <div className="songs-column">
             <div className="song-bar">
                 <button onClick={() => setfav(false)}>Songs</button>
-                <button onClick={() => setfav(true)}>Favorites</button>
+                {user && <button onClick={() => setfav(true)}>Favorites</button>}
             </div>
             {<div className="song-list">
                 {

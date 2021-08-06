@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import decode from 'jwt-decode';
 import "./navbar.css"
-function Navbar() {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+function Navbar({ user, setUser }) {
+
     const location = useLocation();
 
     const logout = () => {

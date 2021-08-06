@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { addFavorite } from '../../api';
+import { addFavorite, deleteFavorite } from '../../api';
 import Controls from './Controls';
 import Details from './Details';
 
@@ -41,9 +41,9 @@ function Player(props) {
         }
     }
 
-    const addToFav = async (userId, songId) => {
+    const addToFav = async () => {
         try {
-            // await addFavorite({ userId, songId })
+            await addFavorite({ userId: props.userId, songId: props.songs[props.currentSongIndex].id })
             props.setFavorites((fav) => {
 
                 return [...fav, props.songs[props.currentSongIndex].id]
@@ -52,9 +52,9 @@ function Player(props) {
             console.log(error)
         }
     }
-    const deleteFav = async (userId, songId) => {
+    const deleteFav = async () => {
         try {
-            // await addFavorite({ userId, songId })
+            await deleteFavorite({ userId: props.userId, songId: props.songs[props.currentSongIndex].id })
             const fav = props.favorites.filter(fav => fav !== props.songs[props.currentSongIndex].id)
             props.setFavorites(fav)
         } catch (error) {
@@ -63,8 +63,13 @@ function Player(props) {
     }
     return (
         <div className="c-player">
-            <p onClick={deleteFav}>delete</p>
-            <p onClick={addToFav}>fav8</p>
+            {props.user &&
+                <div>
+                    <p onClick={deleteFav}>Dislike</p>
+                    <p onClick={addToFav}>Like</p>
+                </div>
+            }
+
             <audio src={props.songs[props.currentSongIndex].src} ref={audioEl}></audio>
             <h4>Playing now</h4>
             <Details song={props.songs[props.currentSongIndex]} />

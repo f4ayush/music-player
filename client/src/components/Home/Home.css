@@ -1,8 +1,9 @@
 .home{
     display: flex;
+    justify-content: space-around;
 }
 
 
-.songs-column, .c-player {
+/* .songs-column, .c-player {
     flex: 1;
-}
+} */

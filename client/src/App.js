@@ -4,11 +4,13 @@ import Navbar from './components/Navbar/Navbar';
 import Login from './components/Login/Login';
 import Home from './components/Home/Home';
 import Upload from './components/Upload/Upload';
+import { getSong } from './api';
 
 
 function App() {
   const [userId, setuserId] = useState(JSON.parse(localStorage.getItem('musicPlayerUser'))?.data?.result?._id);
-  const [songs] = useState([
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('musicPlayerUser')));
+  const [songs, setsongs] = useState([
     {
       id: "1",
       title: "Forget me too ft. Halsey",
@@ -41,6 +43,13 @@ function App() {
 
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [nextSongIndex, setNextSongIndex] = useState(0);
+  // const fetchSongs = async () => {
+  //   const { data } = await getSong()
+  //   setsongs(data.song)
+  // }
+  // useEffect(() => {
+  //   fetchSongs()
+  // }, [])
 
   useEffect(() => {
     setNextSongIndex(() => {
@@ -54,11 +63,13 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      <Navbar user={user} setUser={setUser} />
       <Upload />
       <Switch>
         <Route path="/" exact>
           <Home
+            user={user}
+            userId={userId}
             currentSongIndex={currentSongIndex}
             setCurrentSongIndex={setCurrentSongIndex}
             nextSongIndex={nextSongIndex}

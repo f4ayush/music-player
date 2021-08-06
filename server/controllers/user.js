@@ -48,26 +48,39 @@ export const signup = async (req, res) => {
 };
 
 
-export const save = async (req, res) => {
-  const { userId, code } = req.body
+export const addFavorite = async (req, res) => {
+  const { userId, songId } = req.body
 
   try {
     const user = await UserModal.findById(userId)
-    user.code = code
+    user.songs.push(songId)
     await UserModal.findByIdAndUpdate(userId, user, { new: true })
-    res.status(200).json(code)
+    res.status(200).json(songId)
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: error })
   }
 }
 
-export const getCode = async (req, res) => {
+export const deleteFavorite = async (req, res) => {
+  const { userId, songId } = req.body
+  try {
+    const user = await UserModal.findById(userId)
+    user.songs = user.songs.filter(song => song != songId)
+    await UserModal.findByIdAndUpdate(userId, user, { new: true })
+    res.status(200).json(songId)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: error })
+  }
+}
+
+export const getFavorite = async (req, res) => {
   const { userId } = req.body
 
   try {
     const user = await UserModal.findById(userId)
-    res.status(200).json(user.code)
+    res.status(200).json({ favorites: user.songs })
   } catch (error) {
     console.log(error)
     res.status(500).json({ message: error })

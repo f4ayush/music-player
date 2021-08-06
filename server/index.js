@@ -11,8 +11,8 @@ app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
 
-app.use('/', users);
-app.use('/addSong', songs);
+app.use('/user', users);
+app.use('/songs', songs);
 
 const CONNECTION_URL = 'mongodb+srv://ayush:ayush@cluster0.hapkh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;
