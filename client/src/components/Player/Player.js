@@ -6,7 +6,7 @@ import Details from './Details';
 function Player(props) {
     const audioEl = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
-
+    const [songSrc, setsongSrc] = useState("")
     useEffect(() => {
         if (isPlaying) {
             audioEl.current.play();
@@ -14,6 +14,7 @@ function Player(props) {
             audioEl.current.pause();
         }
     });
+
 
     const SkipSong = (forwards = true) => {
         if (forwards) {

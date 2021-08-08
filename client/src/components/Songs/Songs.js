@@ -5,7 +5,7 @@ function Songs({ songs, favorites, setCurrentSongId, setCurrentSongIndex, user }
     // const [getIndex, setgetIndex] = useState("")
     const getTitle = (id) => {
         for (let i = 0; i < songs.length; i++) {
-            if (songs[i].id == id) {
+            if (songs[i]._id == id) {
                 return songs[i].title
             }
         }
@@ -13,7 +13,7 @@ function Songs({ songs, favorites, setCurrentSongId, setCurrentSongIndex, user }
     const playSong = (id) => {
         // setCurrentSongId(id)
         for (let i = 0; i < songs.length; i++) {
-            if (songs[i].id == id) {
+            if (songs[i]._id == id) {
                 setCurrentSongIndex(i)
             }
         }
@@ -31,7 +31,7 @@ function Songs({ songs, favorites, setCurrentSongId, setCurrentSongIndex, user }
                             return <p key={song} onClick={() => playSong(song)}>{getTitle(song)}</p>
                         })
                         : songs.map((song) => {
-                            return <p key={song.id} onClick={() => playSong(song.id)}>{song.title}</p>
+                            return <p key={song._id} onClick={() => playSong(song._id)}>{song.title}</p>
                         })
                 }
             </div>}

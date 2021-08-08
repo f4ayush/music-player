@@ -43,13 +43,6 @@ function App() {
 
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [nextSongIndex, setNextSongIndex] = useState(0);
-  // const fetchSongs = async () => {
-  //   const { data } = await getSong()
-  //   setsongs(data.song)
-  // }
-  // useEffect(() => {
-  //   fetchSongs()
-  // }, [])
 
   useEffect(() => {
     setNextSongIndex(() => {
@@ -64,7 +57,6 @@ function App() {
   return (
     <Router>
       <Navbar user={user} setUser={setUser} />
-      <Upload />
       <Switch>
         <Route path="/" exact>
           <Home

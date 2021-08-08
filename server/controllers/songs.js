@@ -21,20 +21,31 @@ export const addSong = async (req, res) => {
 export const getSong = async (req, res) => {
 
     try {
-        const song = await SongModal.find()
-        res.status(201).json({ song });
+        let songs = await SongModal.find({
+
+        }, {
+            "_id": 1,
+            "title": 1,
+            "artist": 1
+        }
+        );
+        res.status(201).json(songs);
     } catch (error) {
         res.status(500).json({ message: "Something went wrong" });
-
         console.log(error);
     }
 };
 
-export const getSongDetails = async (req, res) => {
-
+export const getSongSrc = async (req, res) => {
+    const { songId } = req.body
     try {
-        const song = await SongModal.find()
-        res.status(201).json({ song });
+        const song = await SongModal.find({
+            "_id ": songId
+        }, {
+            "song": 1
+        }
+        );
+        res.status(201).json(song);
     } catch (error) {
         res.status(500).json({ message: "Something went wrong" });
 
